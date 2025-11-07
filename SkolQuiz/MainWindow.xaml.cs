@@ -48,7 +48,7 @@ namespace SkolQuiz
         {
             // Hämta sökvägen till AppData\Local
             string appDataPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
-            string quizFolderPath = Path.Combine(appDataPath, "QUIZGAME", "Quizes");
+            string quizFolderPath = Path.Combine(appDataPath, "Quizes");
             DirectoryInfo QuizFolder = new DirectoryInfo(quizFolderPath);
 
             // Om mappen inte finns i AppData, skapa den
