@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Text.Json;
 using System.Windows;
 
@@ -48,43 +47,62 @@ namespace SkolQuiz
         {
             // Hämta sökvägen till AppData\Local
             string appDataPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
-            string quizFolderPath = Path.Combine(appDataPath, "Quizes");
-            DirectoryInfo QuizFolder = new DirectoryInfo(quizFolderPath);
-
-            // Om mappen inte finns i AppData, skapa den
-            if (!QuizFolder.Exists)
-            {
-                QuizFolder.Create();
-            }
-
-            // Kopiera JSON-filerna från projektmappen till AppData
+            string quizFolderPath = Path.Combine(appDataPath, "SkolQuiz", "Quizes");
+            
+            // Försök först läsa från projektmappen (där .exe ligger)
             string projectQuizPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Quizes");
+            
+            // Om projektmappen finns, använd den direkt (enklare för utveckling och tester)
             if (Directory.Exists(projectQuizPath))
             {
-                // Gå igenom alla JSON-filer i projektmappen
+                // Läs direkt från projektmappen
                 foreach (var file in Directory.GetFiles(projectQuizPath, "*.json"))
                 {
-                    // Skapa destinationssökväg i AppData
-                    string destFile = Path.Combine(quizFolderPath, Path.GetFileName(file));
-                    
-                    // Kopiera filen
-                    File.Copy(file, destFile, overwrite: true);
+                    try
+                    {
+                        string json = File.ReadAllText(file);
+                        var quiz = JsonSerializer.Deserialize<Quiz>(json);
+                        if (quiz != null)
+                        {
+                            quizes.Add(quiz);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Fel vid läsning av {Path.GetFileName(file)}:\n{ex.Message}");
+                    }
                 }
             }
-
-            // Läs alla JSON-filer från AppData-mappen
-            foreach (FileInfo file in QuizFolder.EnumerateFiles("*.json"))
+            else
             {
-                using var fs = File.OpenRead(file.FullName);
-                var quiz = JsonSerializer.Deserialize<Quiz>(fs);
-                if (quiz != null)
-                    quizes.Add(quiz);
+                // Om projektmappen inte finns, försök läsa från AppData (backup)
+                DirectoryInfo QuizFolder = new DirectoryInfo(quizFolderPath);
+                
+                if (QuizFolder.Exists)
+                {
+                    foreach (FileInfo file in QuizFolder.EnumerateFiles("*.json"))
+                    {
+                        try
+                        {
+                            string json = File.ReadAllText(file.FullName);
+                            var quiz = JsonSerializer.Deserialize<Quiz>(json);
+                            if (quiz != null)
+                            {
+                                quizes.Add(quiz);
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show($"Fel vid läsning av {file.Name}:\n{ex.Message}");
+                        }
+                    }
+                }
             }
 
             // Visa ett meddelande om inga filer hittades
             if (quizes.Count == 0)
             {
-                MessageBox.Show($"Inga JSON-filer hittades! Kontrollera att filerna finns i:\n{quizFolderPath}\n\neller i projektmappen: {Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Quizes")}");
+                MessageBox.Show($"Inga JSON-filer hittades!\n\nKontrollera att filerna finns i:\n{projectQuizPath}\n\nOBS: Se till att projektet har byggts (Build) så att JSON-filerna kopieras till output-mappen!");
             }
         }
     }
