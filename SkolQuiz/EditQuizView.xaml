@@ -21,9 +21,80 @@
         <ComboBox x:Name="QuizComboBox" Grid.Row="1" Height="35" FontSize="16" Margin="0,0,0,10" SelectionChanged="QuizComboBox_SelectionChanged"/>
 
         <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,10">
-            <Button x:Name="SaveChangesButton" Content="Spara Ändringar" Width="180" Height="45" Background="#FF27AE60" Foreground="White" FontWeight="Bold" FontSize="16" Click="SaveChangesButton_Click" BorderThickness="0" Margin="5" IsEnabled="False"/>
-            <Button x:Name="DeleteQuizButton" Content="Ta bort Quiz" Width="180" Height="45" Background="#FFE74C3C" Foreground="White" FontWeight="Bold" FontSize="16" Click="DeleteQuizButton_Click" BorderThickness="0" Margin="5" IsEnabled="False"/>
-            <Button x:Name="BackButton" Content="Tillbaka" Width="150" Height="45" Background="#FF95A5A6" Foreground="White" FontWeight="Bold" FontSize="16" Click="BackButton_Click" BorderThickness="0" Margin="5"/>
+            <Button x:Name="SaveChangesButton" Content="Spara Ändringar" Width="180" Height="45" Background="#FF2ECC71" Foreground="#FFFFFFFF" FontWeight="Bold" FontSize="16" Click="SaveChangesButton_Click" BorderThickness="0" Margin="5" IsEnabled="False">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Background="{TemplateBinding Background}" 
+                                            BorderThickness="{TemplateBinding BorderThickness}"
+                                            >
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#FF27AE60"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Background" Value="#FF7F8C8D"/>
+                                <Setter Property="Foreground" Value="#FFBDC3C7"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+            <Button x:Name="DeleteQuizButton" Content="Ta bort Quiz" Width="180" Height="45" Background="#FFE74C3C" Foreground="#FFFFFFFF" FontWeight="Bold" FontSize="16" Click="DeleteQuizButton_Click" BorderThickness="0" Margin="5" IsEnabled="False">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+									<Border Background="{TemplateBinding Background}"
+                                            BorderThickness="{TemplateBinding BorderThickness}">
+
+										<ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+									</Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#FFC0392B"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Background" Value="#FF7F8C8D"/>
+                                <Setter Property="Foreground" Value="#FFBDC3C7"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+            <Button x:Name="BackButton" Content="Tillbaka" Width="150" Height="45" Background="#FF95A5A6" Foreground="#FFFFFFFF" FontWeight="Bold" FontSize="16" Click="BackButton_Click" BorderThickness="0" Margin="5">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Background="{TemplateBinding Background}" 
+                                            BorderThickness="{TemplateBinding BorderThickness}"
+                                            >
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#FF7F8C8D"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
         </StackPanel>
 
         <ScrollViewer Grid.Row="4" VerticalScrollBarVisibility="Auto">

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Media;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
@@ -16,12 +17,28 @@ namespace SkolQuiz
         public List<Question> questions { get; set; }
         private int score = 0;
         private int totalAnswered = 0;
+        private SoundPlayer correctSoundPlayer;
+        private SoundPlayer incorrectSoundPlayer;
 
         public QuizView()
         {
             InitializeComponent();
             Loaded += QuizView_Loaded;
             UpdateScoreDisplay();
+            InitializeSoundPlayers();
+        }
+
+        private void InitializeSoundPlayers()
+        {
+            string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
+            string correctSoundPath = System.IO.Path.Combine(baseDirectory, "Sounds", "correct.wav");
+            string incorrectSoundPath = System.IO.Path.Combine(baseDirectory, "Sounds", "incorrect.wav");
+
+            correctSoundPlayer = new SoundPlayer(correctSoundPath);
+            correctSoundPlayer.Load();
+
+            incorrectSoundPlayer = new SoundPlayer(incorrectSoundPath);
+            incorrectSoundPlayer.Load();
         }
 
         private void UpdateScoreDisplay()
@@ -29,7 +46,8 @@ namespace SkolQuiz
             if (totalAnswered > 0)
             {
                 double percentage = (score / (double)totalAnswered) * 100;
-                ScoreText.Text = $"Poäng: {score}/{totalAnswered} ({percentage:F1}%)";
+                string formattedPercentage = percentage.ToString("F1");
+                ScoreText.Text = $"Poäng: {score}/{totalAnswered} ({formattedPercentage}%)";
             }
             else
             {
@@ -41,30 +59,68 @@ namespace SkolQuiz
         {
             if (currentIndex >= questions.Count)
             {
-                double finalPercentage = (score / (double)questions.Count) * 100;
-                MessageBox.Show($"Quiz avslutat!{Environment.NewLine}{Environment.NewLine}Du fick {score} av {questions.Count} rätt!{Environment.NewLine}Resultat: {finalPercentage:F1}%");
-                
-                if (Application.Current.MainWindow is MainWindow mainWindow)
-                {
-                    mainWindow.MainContent.Content = null;
-                }
+                ShowFinalResults();
                 return;
             }
 
             CurrentQuestion = questions[currentIndex];
+            DisplayQuestionContent();
+            UpdateQuestionCounter();
+            DataContext = CurrentQuestion;
+            LoadQuestionImage();
+        }
+
+        private void ShowFinalResults()
+        {
+            double finalPercentage = (score / (double)questions.Count) * 100;
+            string formattedPercentage = finalPercentage.ToString("F1");
+            string message = $"Quiz avslutat!{Environment.NewLine}{Environment.NewLine}Du fick {score} av {questions.Count} rätt!{Environment.NewLine}Resultat: {formattedPercentage}%";
+            
+            MessageBox.Show(message);
+
+            MainWindow mainWindow = Application.Current.MainWindow as MainWindow;
+            if (mainWindow != null)
+            {
+                mainWindow.MainContent.Content = null;
+            }
+        }
+
+        private void DisplayQuestionContent()
+        {
             CurrentQuestionText.Text = CurrentQuestion.Statement;
             AnswerA.Content = CurrentQuestion.Answers[0];
             AnswerB.Content = CurrentQuestion.Answers[1];
             AnswerC.Content = CurrentQuestion.Answers[2];
-            CounterQuestion = $"Fråga {currentIndex + 1} av {questions.Count}";
-            CounterQuestionText.Text = CounterQuestion;
-            DataContext = CurrentQuestion;
 
-            if (!string.IsNullOrEmpty(CurrentQuestion.ImagePath) && System.IO.File.Exists(CurrentQuestion.ImagePath))
+            if (CurrentQuestion.Answers.Length > 3)
+            {
+                AnswerD.Content = CurrentQuestion.Answers[3];
+            }
+            else
+            {
+                AnswerD.Content = "Inget svar";
+            }
+        }
+
+        private void UpdateQuestionCounter()
+        {
+            int questionNumber = currentIndex + 1;
+            int totalQuestions = questions.Count;
+            CounterQuestion = $"Fråga {questionNumber} av {totalQuestions}";
+            CounterQuestionText.Text = CounterQuestion;
+        }
+
+        private void LoadQuestionImage()
+        {
+            bool hasImagePath = !string.IsNullOrEmpty(CurrentQuestion.ImagePath);
+            bool imageFileExists = hasImagePath && System.IO.File.Exists(CurrentQuestion.ImagePath);
+
+            if (imageFileExists)
             {
                 try
                 {
-                    var bitmap = new BitmapImage(new Uri(CurrentQuestion.ImagePath));
+                    var imageUri = new Uri(CurrentQuestion.ImagePath);
+                    var bitmap = new BitmapImage(imageUri);
                     QuestionImage.Source = bitmap;
                     ImageBorder.Visibility = Visibility.Visible;
                 }
@@ -81,32 +137,47 @@ namespace SkolQuiz
 
         private void AnswerButton_Click(object sender, RoutedEventArgs e)
         {
-            totalAnswered++;
-
             Button clickedButton = sender as Button;
             string buttonTag = clickedButton.Tag.ToString();
             int selectedAnswer = int.Parse(buttonTag);
 
-            if (selectedAnswer == CurrentQuestion.CorrectAnswers)
+            bool isCorrectAnswer = (selectedAnswer == CurrentQuestion.CorrectAnswers);
+
+            if (isCorrectAnswer)
             {
-                MessageBox.Show("Bra jobbat!");
-                score++;
+                HandleCorrectAnswer();
             }
             else
             {
-                string correctAnswerText = CurrentQuestion.Answers[CurrentQuestion.CorrectAnswers];
-                MessageBox.Show($"Fel svar{Environment.NewLine}Rätt svar var: {correctAnswerText}");
+                HandleIncorrectAnswer();
             }
             
-            UpdateScoreDisplay();
+            totalAnswered++;
             currentIndex++;
+            UpdateScoreDisplay();
             ShowQuestion();
+        }
+
+        private void HandleCorrectAnswer()
+        {
+            correctSoundPlayer.Play();
+            MessageBox.Show("Bra jobbat!");
+            score++;
+        }
+
+        private void HandleIncorrectAnswer()
+        {
+            incorrectSoundPlayer.Play();
+            string correctAnswerText = CurrentQuestion.Answers[CurrentQuestion.CorrectAnswers];
+            string message = $"Fel svar{Environment.NewLine}Rätt svar var: {correctAnswerText}";
+            MessageBox.Show(message);
         }
 
         private void NextQuestionButton_Click(object sender, RoutedEventArgs e)
         {
             totalAnswered++;
             currentIndex++;
+            UpdateScoreDisplay();
             ShowQuestion();
         }
 

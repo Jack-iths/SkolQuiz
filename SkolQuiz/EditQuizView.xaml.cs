@@ -188,16 +188,17 @@ namespace SkolQuiz
         private TextBox answer1TextBox;
         private TextBox answer2TextBox;
         private TextBox answer3TextBox;
+        private TextBox answer4TextBox;
         private ComboBox correctAnswerComboBox;
-        private TextBox categoryTextBox;
+        private ComboBox categoryComboBox;
         private TextBlock questionNumberBlock;
         private Action<QuestionEditControl> onDelete;
 
         public QuestionEditControl(Question question, int number, Action<QuestionEditControl> deleteCallback)
         {
             onDelete = deleteCallback;
-            Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C3E50"));
-            BorderBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF3498DB"));
+            Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF34495E"));
+            BorderBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF27AE60"));
             BorderThickness = new Thickness(2);
             Margin = new Thickness(0, 0, 0, 15);
             Padding = new Thickness(15);
@@ -215,7 +216,7 @@ namespace SkolQuiz
                 Text = $"Fraga {number}",
                 FontSize = 18,
                 FontWeight = FontWeights.Bold,
-                Foreground = new SolidColorBrush(Colors.White)
+                Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFECF0F1"))
             };
             DockPanel.SetDock(questionNumberBlock, Dock.Left);
             headerPanel.Children.Add(questionNumberBlock);
@@ -240,7 +241,7 @@ namespace SkolQuiz
             var questionLabel = new TextBlock
             {
                 Text = "Fraga:",
-                Foreground = new SolidColorBrush(Colors.LightGray),
+                Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFECF0F1")),
                 Margin = new Thickness(0, 5, 0, 3)
             };
             stackPanel.Children.Add(questionLabel);
@@ -258,7 +259,7 @@ namespace SkolQuiz
             var answersLabel = new TextBlock
             {
                 Text = "Svarsalternativ:",
-                Foreground = new SolidColorBrush(Colors.LightGray),
+                Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFECF0F1")),
                 Margin = new Thickness(0, 5, 0, 3)
             };
             stackPanel.Children.Add(answersLabel);
@@ -266,15 +267,17 @@ namespace SkolQuiz
             answer1TextBox = new TextBox { Text = question.Answers.Length > 0 ? question.Answers[0] : "", Height = 30, Padding = new Thickness(5), Margin = new Thickness(0, 2, 0, 2) };
             answer2TextBox = new TextBox { Text = question.Answers.Length > 1 ? question.Answers[1] : "", Height = 30, Padding = new Thickness(5), Margin = new Thickness(0, 2, 0, 2) };
             answer3TextBox = new TextBox { Text = question.Answers.Length > 2 ? question.Answers[2] : "", Height = 30, Padding = new Thickness(5), Margin = new Thickness(0, 2, 0, 2) };
+            answer4TextBox = new TextBox { Text = question.Answers.Length > 3 ? question.Answers[3] : "", Height = 30, Padding = new Thickness(5), Margin = new Thickness(0, 2, 0, 2) };
 
             stackPanel.Children.Add(answer1TextBox);
             stackPanel.Children.Add(answer2TextBox);
             stackPanel.Children.Add(answer3TextBox);
+            stackPanel.Children.Add(answer4TextBox);
 
             var correctLabel = new TextBlock
             {
                 Text = "Ratt svar:",
-                Foreground = new SolidColorBrush(Colors.LightGray),
+                Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFECF0F1")),
                 Margin = new Thickness(0, 10, 0, 3)
             };
             stackPanel.Children.Add(correctLabel);
@@ -287,24 +290,42 @@ namespace SkolQuiz
             correctAnswerComboBox.Items.Add("1");
             correctAnswerComboBox.Items.Add("2");
             correctAnswerComboBox.Items.Add("3");
+            correctAnswerComboBox.Items.Add("4");
             correctAnswerComboBox.SelectedIndex = question.CorrectAnswers;
             stackPanel.Children.Add(correctAnswerComboBox);
 
             var categoryLabel = new TextBlock
             {
                 Text = "Kategori:",
-                Foreground = new SolidColorBrush(Colors.LightGray),
+                Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFECF0F1")),
                 Margin = new Thickness(0, 5, 0, 3)
             };
             stackPanel.Children.Add(categoryLabel);
 
-            categoryTextBox = new TextBox
+            categoryComboBox = new ComboBox
             {
-                Text = question.Category,
                 Height = 30,
                 Padding = new Thickness(5)
             };
-            stackPanel.Children.Add(categoryTextBox);
+            
+            var categories = new List<string> { "Sport", "Film", "Spel", "Anime", "Allmänt", "Geografi", "Historia", "Vetenskap" };
+            foreach (var category in categories)
+            {
+                categoryComboBox.Items.Add(category);
+            }
+            
+            int categoryIndex = categories.IndexOf(question.Category);
+            if (categoryIndex >= 0)
+            {
+                categoryComboBox.SelectedIndex = categoryIndex;
+            }
+            else
+            {
+                categoryComboBox.Items.Add(question.Category);
+                categoryComboBox.SelectedIndex = categoryComboBox.Items.Count - 1;
+            }
+            
+            stackPanel.Children.Add(categoryComboBox);
 
             Child = stackPanel;
         }
@@ -318,9 +339,9 @@ namespace SkolQuiz
         {
             return new Question(
                 questionTextBox.Text,
-                new[] { answer1TextBox.Text, answer2TextBox.Text, answer3TextBox.Text },
+                new[] { answer1TextBox.Text, answer2TextBox.Text, answer3TextBox.Text, answer4TextBox.Text },
                 correctAnswerComboBox.SelectedIndex,
-                categoryTextBox.Text
+                categoryComboBox.SelectedItem?.ToString() ?? "Allmänt"
             );
         }
     }

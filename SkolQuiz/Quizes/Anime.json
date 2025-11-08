@@ -3,73 +3,73 @@
   "Questions": [
     {
       "Statement": "Vad heter huvudkaraktären i Naruto?",
-      "Answers": [ "Sasuke Uchiha", "Kakashi Hatake", "Naruto Uzumaki" ],
+      "Answers": [ "Sasuke Uchiha", "Kakashi Hatake", "Naruto Uzumaki", "Sakura Haruno" ],
       "CorrectAnswers": 2,
       "Category": "Anime"
     },
     {
       "Statement": "Vilket år började One Piece sändas?",
-      "Answers": [ "1997", "1999", "2001" ],
+      "Answers": [ "1997", "1999", "2001", "2003" ],
       "CorrectAnswers": 1,
       "Category": "Anime"
     },
     {
       "Statement": "Vad heter alkemisten som förlorade sin arm och sitt ben?",
-      "Answers": [ "Roy Mustang", "Edward Elric", "Alphonse Elric" ],
+      "Answers": [ "Roy Mustang", "Edward Elric", "Alphonse Elric", "Scar" ],
       "CorrectAnswers": 1,
       "Category": "Anime"
     },
     {
       "Statement": "Vilket anime handlar om en anteckningsbok som kan döda människor?",
-      "Answers": [ "Death Note", "Code Geass", "Psycho-Pass" ],
+      "Answers": [ "Death Note", "Code Geass", "Psycho-Pass", "Tokyo Ghoul" ],
       "CorrectAnswers": 0,
       "Category": "Anime"
     },
     {
       "Statement": "Vad heter huvudkaraktären i Attack on Titan?",
-      "Answers": [ "Levi Ackerman", "Mikasa Ackerman", "Eren Yeager" ],
+      "Answers": [ "Levi Ackerman", "Mikasa Ackerman", "Eren Yeager", "Armin Arlert" ],
       "CorrectAnswers": 2,
       "Category": "Anime"
     },
     {
       "Statement": "Vilket anime handlar om en pirat som vill bli kung?",
-      "Answers": [ "Fairy Tail", "One Piece", "Bleach" ],
+      "Answers": [ "Fairy Tail", "One Piece", "Bleach", "Naruto" ],
       "CorrectAnswers": 1,
       "Category": "Anime"
     },
     {
       "Statement": "Vad heter den gula Pokémonen?",
-      "Answers": [ "Charmander", "Squirtle", "Pikachu" ],
+      "Answers": [ "Charmander", "Squirtle", "Pikachu", "Bulbasaur" ],
       "CorrectAnswers": 2,
       "Category": "Anime"
     },
     {
       "Statement": "Vilket anime är Goku från?",
-      "Answers": [ "Dragon Ball", "Naruto", "One Punch Man" ],
+      "Answers": [ "Dragon Ball", "Naruto", "One Punch Man", "Bleach" ],
       "CorrectAnswers": 0,
       "Category": "Anime"
     },
     {
       "Statement": "Vad heter huvudkaraktären i Demon Slayer?",
-      "Answers": [ "Zenitsu Agatsuma", "Inosuke Hashibira", "Tanjiro Kamado" ],
+      "Answers": [ "Zenitsu Agatsuma", "Inosuke Hashibira", "Tanjiro Kamado", "Nezuko Kamado" ],
       "CorrectAnswers": 2,
       "Category": "Anime"
     },
     {
       "Statement": "Vilket anime handlar om en kille som kan besegra alla med ett slag?",
-      "Answers": [ "Mob Psycho 100", "One Punch Man", "My Hero Academia" ],
+      "Answers": [ "Mob Psycho 100", "One Punch Man", "My Hero Academia", "Dragon Ball" ],
       "CorrectAnswers": 1,
       "Category": "Anime"
     },
     {
       "Statement": "Vad heter skolan i My Hero Academia?",
-      "Answers": [ "Shiketsu High", "Ketsubutsu Academy", "U.A. High School" ],
+      "Answers": [ "Shiketsu High", "Ketsubutsu Academy", "U.A. High School", "Seiai Academy" ],
       "CorrectAnswers": 2,
       "Category": "Anime"
     },
     {
       "Statement": "Vilket anime har Kakarot som huvudkaraktär?",
-      "Answers": [ "Naruto", "One Piece", "Dragon Ball" ],
+      "Answers": [ "Naruto", "One Piece", "Dragon Ball", "Bleach" ],
       "CorrectAnswers": 2,
       "Category": "Anime"
     }
