@@ -23,4 +23,9 @@
     </None>
   </ItemGroup>
 
+  <ItemGroup>
+    <!-- Images som Resources (för XAML ImageSource) -->
+    <Resource Include="Images\**\*" />
+  </ItemGroup>
+
 </Project>

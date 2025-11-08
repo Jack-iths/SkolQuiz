@@ -3,73 +3,73 @@
   "Questions": [
     {
       "Statement": "Vilket år släpptes Minecraft?",
-      "Answers": [ "2009", "2010", "2011", "2012" ],
+      "Answers": [ "2009", "2010", "2011" ],
       "CorrectAnswers": 2,
       "Category": "Spel"
     },
     {
       "Statement": "Vad heter huvudkaraktären i The Legend of Zelda-serien?",
-      "Answers": [ "Zelda", "Link", "Ganondorf", "Epona" ],
+      "Answers": [ "Zelda", "Link", "Ganondorf" ],
       "CorrectAnswers": 1,
       "Category": "Spel"
     },
     {
       "Statement": "Vilket företag utvecklade Fortnite?",
-      "Answers": [ "Activision", "Epic Games", "EA", "Ubisoft" ],
+      "Answers": [ "Activision", "Epic Games", "EA" ],
       "CorrectAnswers": 1,
       "Category": "Spel"
     },
     {
       "Statement": "Vad heter den gula karaktären som äter prickar i en labyrint?",
-      "Answers": [ "Pac-Man", "Mario", "Sonic", "Donkey Kong" ],
+      "Answers": [ "Pac-Man", "Mario", "Sonic" ],
       "CorrectAnswers": 0,
       "Category": "Spel"
     },
     {
       "Statement": "Vilket spel har slagorden 'Gotta catch 'em all'?",
-      "Answers": [ "Digimon", "Yu-Gi-Oh", "Pokémon", "Monster Hunter" ],
+      "Answers": [ "Digimon", "Yu-Gi-Oh", "Pokémon" ],
       "CorrectAnswers": 2,
       "Category": "Spel"
     },
     {
       "Statement": "Vilket företag skapade PlayStation?",
-      "Answers": [ "Microsoft", "Nintendo", "Sony", "Sega" ],
+      "Answers": [ "Microsoft", "Nintendo", "Sony" ],
       "CorrectAnswers": 2,
       "Category": "Spel"
     },
     {
       "Statement": "Vad heter den italienska rörmokaren i Nintendo-spelen?",
-      "Answers": [ "Luigi", "Wario", "Mario", "Waluigi" ],
+      "Answers": [ "Luigi", "Wario", "Mario" ],
       "CorrectAnswers": 2,
       "Category": "Spel"
     },
     {
       "Statement": "Vilket battle royale-spel blev extremt populärt 2017?",
-      "Answers": [ "Apex Legends", "PUBG", "Call of Duty Warzone", "Fortnite" ],
+      "Answers": [ "Apex Legends", "PUBG", "Fortnite" ],
       "CorrectAnswers": 1,
       "Category": "Spel"
     },
     {
       "Statement": "Vad heter den blå igelkotten från Sega?",
-      "Answers": [ "Shadow", "Knuckles", "Sonic", "Tails" ],
+      "Answers": [ "Shadow", "Knuckles", "Sonic" ],
       "CorrectAnswers": 2,
       "Category": "Spel"
     },
     {
       "Statement": "Vilket spel utspelar sig i Hyrule?",
-      "Answers": [ "Final Fantasy", "The Legend of Zelda", "Kingdom Hearts", "Dragon Quest" ],
+      "Answers": [ "Final Fantasy", "The Legend of Zelda", "Kingdom Hearts" ],
       "CorrectAnswers": 1,
       "Category": "Spel"
     },
     {
       "Statement": "Vad heter spelserien om en mördare som använder sig av smygtaktik?",
-      "Answers": [ "Hitman", "Assassin's Creed", "Metal Gear Solid", "Splinter Cell" ],
+      "Answers": [ "Hitman", "Assassin's Creed", "Metal Gear Solid" ],
       "CorrectAnswers": 1,
       "Category": "Spel"
     },
     {
       "Statement": "Vilket spel har karaktären Master Chief?",
-      "Answers": [ "Gears of War", "Halo", "Destiny", "Mass Effect" ],
+      "Answers": [ "Gears of War", "Halo", "Destiny" ],
       "CorrectAnswers": 1,
       "Category": "Spel"
     }

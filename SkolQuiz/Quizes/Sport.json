@@ -3,73 +3,73 @@
   "Questions": [
     {
       "Statement": "Vilket land vann fotbolls-VM 2022?",
-      "Answers": [ "Argentina", "Frankrike", "Brasilien", "Tyskland" ],
+      "Answers": [ "Argentina", "Frankrike", "Brasilien" ],
       "CorrectAnswers": 0,
       "Category": "Sport"
     },
     {
       "Statement": "Hur många spelare finns det i ett fotbollslag på planen?",
-      "Answers": [ "9", "10", "11", "12" ],
+      "Answers": [ "9", "10", "11" ],
       "CorrectAnswers": 2,
       "Category": "Sport"
     },
     {
       "Statement": "Vem är den mest framgångsrika Formel 1-föraren genom tiderna?",
-      "Answers": [ "Ayrton Senna", "Michael Schumacher", "Lewis Hamilton", "Max Verstappen" ],
-      "CorrectAnswers": 2,
+      "Answers": [ "Michael Schumacher", "Lewis Hamilton", "Max Verstappen" ],
+      "CorrectAnswers": 1,
       "Category": "Sport"
     },
     {
       "Statement": "Vilket land har vunnit flest OS-guld totalt?",
-      "Answers": [ "Kina", "Ryssland", "USA", "Storbritannien" ],
+      "Answers": [ "Kina", "Ryssland", "USA" ],
       "CorrectAnswers": 2,
       "Category": "Sport"
     },
     {
       "Statement": "Vad heter Sveriges nationalsport?",
-      "Answers": [ "Fotboll", "Ishockey", "Bandy", "Handboll" ],
+      "Answers": [ "Fotboll", "Ishockey", "Bandy" ],
       "CorrectAnswers": 1,
       "Category": "Sport"
     },
     {
       "Statement": "Hur många set spelar man i en tennismatch i Grand Slam för herrar?",
-      "Answers": [ "3 set", "5 set", "7 set", "2 set" ],
+      "Answers": [ "3 set", "5 set", "7 set" ],
       "CorrectAnswers": 1,
       "Category": "Sport"
     },
     {
       "Statement": "Vem har flest Ballon d'Or-priser?",
-      "Answers": [ "Cristiano Ronaldo", "Lionel Messi", "Johan Cruyff", "Michel Platini" ],
+      "Answers": [ "Cristiano Ronaldo", "Lionel Messi", "Johan Cruyff" ],
       "CorrectAnswers": 1,
       "Category": "Sport"
     },
     {
       "Statement": "Vilket lag har vunnit flest Champions League-titlar?",
-      "Answers": [ "Barcelona", "Bayern München", "Real Madrid", "AC Milan" ],
+      "Answers": [ "Barcelona", "Bayern München", "Real Madrid" ],
       "CorrectAnswers": 2,
       "Category": "Sport"
     },
     {
       "Statement": "Hur lång är en maratonsträcka?",
-      "Answers": [ "40,2 km", "42,195 km", "41 km", "43 km" ],
+      "Answers": [ "40,2 km", "42,195 km", "41 km" ],
       "CorrectAnswers": 1,
       "Category": "Sport"
     },
     {
       "Statement": "Vilket land har Zlatan Ibrahimović representerat?",
-      "Answers": [ "Danmark", "Norge", "Sverige", "Finland" ],
+      "Answers": [ "Danmark", "Norge", "Sverige" ],
       "CorrectAnswers": 2,
       "Category": "Sport"
     },
     {
       "Statement": "Hur många poäng ger en touchdown i amerikansk fotboll?",
-      "Answers": [ "5 poäng", "6 poäng", "7 poäng", "8 poäng" ],
+      "Answers": [ "5 poäng", "6 poäng", "7 poäng" ],
       "CorrectAnswers": 1,
       "Category": "Sport"
     },
     {
       "Statement": "Vilket land är basketspelaren Michael Jordan från?",
-      "Answers": [ "Kanada", "USA", "Australien", "Storbritannien" ],
+      "Answers": [ "Kanada", "USA", "Australien" ],
       "CorrectAnswers": 1,
       "Category": "Sport"
     }

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -8,33 +7,47 @@ namespace SkolQuiz.Models
 {
     public class Quiz
     {
-        public IEnumerable<Question> Questions { get; set; }
-
+        public List<Question> Questions { get; set; }
         public string Title { get; set; }
 
-        public Quiz(string _)
-        {
-            //_questions = new List<Question>();
-        }
-
+        // Parameterlös konstruktor för JSON-deserialisering
         public Quiz()
         {
-            //_questions = new List<Question>();
+            Questions = new List<Question>();
+            Title = string.Empty;
+        }
+
+        // Konstruktor med titel
+        public Quiz(string title)
+        {
+            Title = title;
+            Questions = new List<Question>();
         }
 
         public Question GetRandomQuestion()
         {
-            throw new NotImplementedException("A random Question needs to be returned here!");
+            var random = new Random();
+            if (Questions.Count == 0)
+                throw new InvalidOperationException("Inga frågor finns i quizet");
+            return Questions[random.Next(Questions.Count)];
         }
 
         public void AddQuestion(string statement, int correctAnswer, params string[] answers)
         {
-            throw new NotImplementedException("Question need to be instantiated and added to list of questions here!");
+            var newQuestion = new Question(statement, answers, correctAnswer, Title);
+            Questions.Add(newQuestion);
         }
 
         public void RemoveQuestion(int index)
         {
-            throw new NotImplementedException("Question at requested index need to be removed here!");
+            if (index >= 0 && index < Questions.Count)
+            {
+                Questions.RemoveAt(index);
+            }
+            else
+            {
+                throw new ArgumentOutOfRangeException(nameof(index), "Index är utanför gränserna");
+            }
         }
     }
 }

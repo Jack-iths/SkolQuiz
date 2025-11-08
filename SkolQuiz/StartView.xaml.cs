@@ -16,9 +16,10 @@ using System.Windows.Shapes;
 namespace SkolQuiz
 {
 
-    public partial class StartView : Window
+    public partial class StartView : UserControl
     {
         public List<Question> questions { get; set; }
+
         public StartView()
         {
             InitializeComponent();
@@ -26,13 +27,32 @@ namespace SkolQuiz
 
         private void StartButton_Click(object sender, RoutedEventArgs e)
         {
-            QuizView quiz = new QuizView();
+            if (questions == null || questions.Count == 0)
+            {
+                MessageBox.Show("Inga frågor hittades!");
+                return;
+            }
 
-            Random random = new Random();
-            quiz.questions = questions.OrderBy(q => random.Next()).ToList();
-
-            quiz.Show();
-            Close();
+            MainWindow mainWindow = Application.Current.MainWindow as MainWindow;
+            if (mainWindow != null)
+            {
+                QuizView quiz = new QuizView();
+                
+                // Blanda frågorna slumpmässigt
+                Random random = new Random();
+                List<Question> shuffledQuestions = new List<Question>();
+                
+                foreach (Question question in questions)
+                {
+                    shuffledQuestions.Add(question);
+                }
+                
+                // Sortera listan slumpmässigt
+                shuffledQuestions = shuffledQuestions.OrderBy(q => random.Next()).ToList();
+                
+                quiz.questions = shuffledQuestions;
+                mainWindow.MainContent.Content = quiz;
+            }
         }
     }
 }

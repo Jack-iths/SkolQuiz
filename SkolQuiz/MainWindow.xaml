@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SkolQuiz"
         mc:Ignorable="d"
-        Title="Quiz Spel" Height="500" Width="600" Background="#FF34495E" FontFamily="Segoe UI">
+        Title="Quiz Spel" Height="600" Width="600" Background="#FF34495E" FontFamily="Segoe UI">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20"/>
@@ -23,14 +23,32 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="15"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="15"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
+        
+        <!-- Bakgrundsbild (lägg till din start.png i Images-mappen först) -->
+        <Grid.Background>
+            <ImageBrush ImageSource="/Images/start.png" Stretch="UniformToFill"/>
+        </Grid.Background>
+        
+        <!-- Mörk overlay för bättre läsbarhet av text och knappar -->
+        <Rectangle Fill="#88000000" Grid.ColumnSpan="9" Grid.RowSpan="11"/>
 
         <TextBlock Text="QUIZ SPEL" Grid.Column="2" Grid.ColumnSpan="5" Grid.Row="1" FontSize="42" FontWeight="Bold" HorizontalAlignment="Center" Foreground="#FFECF0F1"/>
         <TextBlock Text="VÄLKOMMEN!" Grid.Column="2" Grid.ColumnSpan="5" Grid.Row="2" FontSize="24" HorizontalAlignment="Center" Foreground="#FF3498DB" Margin="0,10,0,0"/>
-        <Button x:Name="ToSeeCategory" Grid.Column="3" Grid.ColumnSpan="3" Grid.Row="4" Content="Börja Spela" FontWeight="Bold" FontSize="20" Height="60" Background="#FF27AE60" Foreground="White" Click="ToSeeCategory_Click" BorderThickness="0"/>
+        
+        <Button x:Name="ToSeeCategory" Grid.Column="2" Grid.ColumnSpan="5" Grid.Row="4" Content="Börja Spela" FontWeight="Bold" FontSize="20" Height="60" Background="#FF27AE60" Foreground="White" Click="ToSeeCategory_Click" BorderThickness="0"/>
+        <Button x:Name="CreateQuizButton" Grid.Column="2" Grid.ColumnSpan="5" Grid.Row="6" Content="Skapa Nytt Quiz" FontWeight="Bold" FontSize="18" Height="55" Background="#FF3498DB" Foreground="White" Click="CreateQuizButton_Click" BorderThickness="0"/>
+        <Button x:Name="EditQuizButton" Grid.Column="2" Grid.ColumnSpan="5" Grid.Row="8" Content="Redigera Quiz" FontWeight="Bold" FontSize="18" Height="55" Background="#FFE74C3C" Foreground="White" Click="EditQuizButton_Click" BorderThickness="0"/>
+
+        <!-- ContentControl för vyer -->
+        <ContentControl x:Name="MainContent" Grid.Column="1" Grid.ColumnSpan="7" Grid.Row="0" Grid.RowSpan="11"/>
     </Grid>
 </Window>

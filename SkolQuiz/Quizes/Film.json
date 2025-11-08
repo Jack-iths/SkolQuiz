@@ -3,73 +3,73 @@
   "Questions": [
     {
       "Statement": "Vilket år släpptes den första Star Wars-filmen?",
-      "Answers": [ "1975", "1977", "1979", "1980" ],
+      "Answers": [ "1975", "1977", "1979" ],
       "CorrectAnswers": 1,
       "Category": "Film"
     },
     {
       "Statement": "Vem regisserade Inception?",
-      "Answers": [ "Steven Spielberg", "Quentin Tarantino", "Christopher Nolan", "Martin Scorsese" ],
+      "Answers": [ "Steven Spielberg", "Quentin Tarantino", "Christopher Nolan" ],
       "CorrectAnswers": 2,
       "Category": "Film"
     },
     {
       "Statement": "Vilken film vann Oscar för Bästa Film 2020?",
-      "Answers": [ "1917", "Joker", "Parasite", "Once Upon a Time in Hollywood" ],
+      "Answers": [ "1917", "Joker", "Parasite" ],
       "CorrectAnswers": 2,
       "Category": "Film"
     },
     {
       "Statement": "Vad heter trollkarlen i Harry Potter-filmerna?",
-      "Answers": [ "Ron Weasley", "Albus Dumbledore", "Harry Potter", "Severus Snape" ],
+      "Answers": [ "Ron Weasley", "Albus Dumbledore", "Harry Potter" ],
       "CorrectAnswers": 2,
       "Category": "Film"
     },
     {
       "Statement": "Vilket djur är Simba i Lejonkungen?",
-      "Answers": [ "Tiger", "Lejon", "Gepard", "Panter" ],
+      "Answers": [ "Tiger", "Lejon", "Gepard" ],
       "CorrectAnswers": 1,
       "Category": "Film"
     },
     {
       "Statement": "Vem spelar Iron Man i Marvel-filmerna?",
-      "Answers": [ "Chris Evans", "Chris Hemsworth", "Robert Downey Jr.", "Mark Ruffalo" ],
+      "Answers": [ "Chris Evans", "Chris Hemsworth", "Robert Downey Jr." ],
       "CorrectAnswers": 2,
       "Category": "Film"
     },
     {
       "Statement": "Vilket år släpptes Titanic?",
-      "Answers": [ "1995", "1996", "1997", "1998" ],
+      "Answers": [ "1995", "1996", "1997" ],
       "CorrectAnswers": 2,
       "Category": "Film"
     },
     {
       "Statement": "Vad heter hobbiten som bär ringen i Sagan om ringen?",
-      "Answers": [ "Bilbo Baggins", "Frodo Baggins", "Samwise Gamgee", "Pippin Took" ],
+      "Answers": [ "Bilbo Baggins", "Frodo Baggins", "Samwise Gamgee" ],
       "CorrectAnswers": 1,
       "Category": "Film"
     },
     {
       "Statement": "Vem regisserade Pulp Fiction?",
-      "Answers": [ "Martin Scorsese", "Quentin Tarantino", "Ridley Scott", "David Fincher" ],
+      "Answers": [ "Martin Scorsese", "Quentin Tarantino", "Ridley Scott" ],
       "CorrectAnswers": 1,
       "Category": "Film"
     },
     {
       "Statement": "Vilket filmbolag är känt för sin lampa som hoppar?",
-      "Answers": [ "DreamWorks", "Pixar", "Disney", "Blue Sky Studios" ],
+      "Answers": [ "DreamWorks", "Pixar", "Disney" ],
       "CorrectAnswers": 1,
       "Category": "Film"
     },
     {
       "Statement": "Vad heter den onda trollkarlen i Harry Potter?",
-      "Answers": [ "Draco Malfoy", "Lucius Malfoy", "Voldemort", "Bellatrix Lestrange" ],
+      "Answers": [ "Draco Malfoy", "Lucius Malfoy", "Voldemort" ],
       "CorrectAnswers": 2,
       "Category": "Film"
     },
     {
       "Statement": "Vilket år släpptes The Matrix?",
-      "Answers": [ "1997", "1998", "1999", "2000" ],
+      "Answers": [ "1997", "1998", "1999" ],
       "CorrectAnswers": 2,
       "Category": "Film"
     }

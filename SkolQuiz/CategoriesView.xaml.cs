@@ -2,86 +2,135 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace SkolQuiz
 {
-    public partial class CategoriesView : Window
+    public partial class CategoriesView : UserControl
     {
         public Quiz selectedQuiz { get; set; }
         
         public CategoriesView()
         {
             InitializeComponent();
+            Loaded += CategoriesView_Loaded;
         }
 
-        private void SportQuizButton_Click(object sender, RoutedEventArgs e)
+        private void CategoriesView_Loaded(object sender, RoutedEventArgs e)
         {
-            List<Question> sportQuestion = selectedQuiz.Questions.Where(q => q.Category == "Sport").ToList();
+            LoadDynamicCategories();
+        }
 
-            if (sportQuestion.Count == 0)
+        private void LoadDynamicCategories()
+        {
+            // Rensa befintliga dynamiska knappar
+            DynamicCategoriesPanel.Children.Clear();
+
+            if (selectedQuiz == null || selectedQuiz.Questions == null || selectedQuiz.Questions.Count == 0)
             {
-                MessageBox.Show("Inga frågor hittades för Sport-kategorin!");
+                MessageBox.Show("Inga frågor hittades i detta quiz!");
                 return;
             }
 
-            StartView startSport = new StartView();
-            startSport.questions = sportQuestion;
-            startSport.Show();
-            Close();
+            // Hämta alla unika kategorier från frågorna
+            List<string> allCategories = new List<string>();
+            foreach (Question question in selectedQuiz.Questions)
+            {
+                allCategories.Add(question.Category);
+            }
+            
+            // Ta bort dubbletter
+            List<string> uniqueCategories = allCategories.Distinct().ToList();
+            
+            // Sortera kategorierna alfabetiskt
+            uniqueCategories.Sort();
+            
+            // Skapa en knapp för varje kategori
+            var colors = new[] { "#FF3498DB", "#FF9B59B6", "#FFE74C3C", "#FF2ECC71", "#FF1ABC9C", "#FFF39C12", "#FFE67E22", "#FF34495E" };
+            int colorIndex = 0;
+
+            foreach (string category in uniqueCategories)
+            {
+                // Räkna antalet frågor i denna kategori
+                int questionCount = 0;
+                foreach (Question question in selectedQuiz.Questions)
+                {
+                    if (question.Category == category)
+                    {
+                        questionCount++;
+                    }
+                }
+                
+                Color buttonColor = (Color)ColorConverter.ConvertFromString(colors[colorIndex % colors.Length]);
+                
+                var button = new Button
+                {
+                    Content = $"{category.ToUpper()}\n({questionCount} frågor)",
+                    Height = 80,
+                    Margin = new Thickness(10),
+                    FontSize = 18,
+                    FontWeight = FontWeights.Bold,
+                    Foreground = new SolidColorBrush(Colors.White),
+                    Background = new SolidColorBrush(buttonColor),
+                    BorderThickness = new Thickness(0),
+                    Tag = category
+                };
+
+                button.Click += CategoryButton_Click;
+                DynamicCategoriesPanel.Children.Add(button);
+                colorIndex++;
+            }
         }
 
-        private void MusicQuizButton_Click(object sender, RoutedEventArgs e)
+        private void CategoryButton_Click(object sender, RoutedEventArgs e)
         {
-            List<Question> filmQuestion = selectedQuiz.Questions.Where(q => q.Category == "Film").ToList();
-
-            if (filmQuestion.Count == 0)
+            Button clickedButton = sender as Button;
+            if (clickedButton == null)
             {
-                MessageBox.Show("Inga frågor hittades för Film-kategorin!");
+                return;
+            }
+            
+            string category = clickedButton.Tag?.ToString();
+            if (string.IsNullOrEmpty(category))
+            {
                 return;
             }
 
-            StartView startFilm = new StartView();
-            startFilm.questions = filmQuestion;
-            startFilm.Show();
-            Close();
-        }
-
-        private void MathQuizButton_Click(object sender, RoutedEventArgs e)
-        {
-            List<Question> spelQuestion = selectedQuiz.Questions.Where(q => q.Category == "Spel").ToList();
-
-            if (spelQuestion.Count == 0)
+            // Filtrera frågor för vald kategori
+            List<Question> categoryQuestions = new List<Question>();
+            foreach (Question question in selectedQuiz.Questions)
             {
-                MessageBox.Show("Inga frågor hittades för Spel-kategorin!");
+                if (question.Category == category)
+                {
+                    categoryQuestions.Add(question);
+                }
+            }
+
+            if (categoryQuestions.Count == 0)
+            {
+                MessageBox.Show($"Inga frågor hittades för {category}-kategorin!");
                 return;
             }
 
-            StartView startSpel = new StartView();
-            startSpel.questions = spelQuestion;
-            startSpel.Show();
-            Close();
-        }
-
-        private void GeographyQuizButton_Click(object sender, RoutedEventArgs e)
-        {
-            List<Question> animeQuestion = selectedQuiz.Questions.Where(q => q.Category == "Anime").ToList();
-
-            if (animeQuestion.Count == 0)
+            // Navigera till StartView
+            MainWindow mainWindow = Application.Current.MainWindow as MainWindow;
+            if (mainWindow != null)
             {
-                MessageBox.Show("Inga frågor hittades för Anime-kategorin!");
-                return;
+                StartView startView = new StartView();
+                startView.questions = categoryQuestions;
+                mainWindow.MainContent.Content = startView;
             }
-
-            StartView startAnime = new StartView();
-            startAnime.questions = animeQuestion;
-            startAnime.Show();
-            Close();
         }
 
         private void AllCategoriesButton_Click(object sender, RoutedEventArgs e)
         {
             // Hämta alla frågor från alla kategorier
-            List<Question> allQuestions = selectedQuiz.Questions.ToList();
+            List<Question> allQuestions = new List<Question>();
+            foreach (Question question in selectedQuiz.Questions)
+            {
+                allQuestions.Add(question);
+            }
 
             if (allQuestions.Count == 0)
             {
@@ -90,17 +139,24 @@ namespace SkolQuiz
             }
 
             // Starta quiz med alla frågor blandat
-            StartView startAll = new StartView();
-            startAll.questions = allQuestions;
-            startAll.Show();
-            Close();
+            MainWindow mainWindow = Application.Current.MainWindow as MainWindow;
+            if (mainWindow != null)
+            {
+                StartView startView = new StartView();
+                startView.questions = allQuestions;
+                mainWindow.MainContent.Content = startView;
+            }
         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow mainWindow = new MainWindow();
-            mainWindow.Show();
-            Close();
+            MainWindow mainWindow = Application.Current.MainWindow as MainWindow;
+            if (mainWindow != null)
+            {
+                QuizSelectionView quizSelectionView = new QuizSelectionView();
+                quizSelectionView.quizes = mainWindow.quizes;
+                mainWindow.MainContent.Content = quizSelectionView;
+            }
         }
     }
 }
