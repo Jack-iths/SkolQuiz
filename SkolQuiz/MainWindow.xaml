@@ -33,12 +33,10 @@
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
         
-        <!-- Bakgrundsbild (lägg till din start.png i Images-mappen först) -->
         <Grid.Background>
             <ImageBrush ImageSource="/Images/start.png" Stretch="UniformToFill"/>
         </Grid.Background>
         
-        <!-- Mörk overlay för bättre läsbarhet av text och knappar -->
         <Rectangle Fill="#88000000" Grid.ColumnSpan="9" Grid.RowSpan="11"/>
 
         <TextBlock Text="QUIZ SPEL" Grid.Column="2" Grid.ColumnSpan="5" Grid.Row="1" FontSize="42" FontWeight="Bold" HorizontalAlignment="Center" Foreground="#FFECF0F1"/>
@@ -48,7 +46,6 @@
         <Button x:Name="CreateQuizButton" Grid.Column="2" Grid.ColumnSpan="5" Grid.Row="6" Content="Skapa Nytt Quiz" FontWeight="Bold" FontSize="18" Height="55" Background="#FF3498DB" Foreground="White" Click="CreateQuizButton_Click" BorderThickness="0"/>
         <Button x:Name="EditQuizButton" Grid.Column="2" Grid.ColumnSpan="5" Grid.Row="8" Content="Redigera Quiz" FontWeight="Bold" FontSize="18" Height="55" Background="#FFE74C3C" Foreground="White" Click="EditQuizButton_Click" BorderThickness="0"/>
 
-        <!-- ContentControl för vyer -->
         <ContentControl x:Name="MainContent" Grid.Column="1" Grid.ColumnSpan="7" Grid.Row="0" Grid.RowSpan="11"/>
     </Grid>
 </Window>
