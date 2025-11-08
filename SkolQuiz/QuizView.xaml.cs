@@ -44,7 +44,6 @@ namespace SkolQuiz
                 double finalPercentage = (score / (double)questions.Count) * 100;
                 MessageBox.Show($"Quiz avslutat!{Environment.NewLine}{Environment.NewLine}Du fick {score} av {questions.Count} rätt!{Environment.NewLine}Resultat: {finalPercentage:F1}%");
                 
-                // Gå tillbaka till huvudmenyn
                 if (Application.Current.MainWindow is MainWindow mainWindow)
                 {
                     mainWindow.MainContent.Content = null;
@@ -61,7 +60,6 @@ namespace SkolQuiz
             CounterQuestionText.Text = CounterQuestion;
             DataContext = CurrentQuestion;
 
-            // Visa bild om den finns
             if (!string.IsNullOrEmpty(CurrentQuestion.ImagePath) && System.IO.File.Exists(CurrentQuestion.ImagePath))
             {
                 try

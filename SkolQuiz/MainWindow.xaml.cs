@@ -28,26 +28,22 @@ namespace SkolQuiz
 
         private async Task LoadQuizes()
         {
-            quizes.Clear(); // Rensa listan först för att undvika dubbletter
+            quizes.Clear();
 
-            // Hämta sökvägen till AppData\Local
             string appDataPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
             string quizFolderPath = Path.Combine(appDataPath, "SkolQuiz", "Quizes");
             
-            // Skapa mappen om den inte finns
             if (!Directory.Exists(quizFolderPath))
             {
                 Directory.CreateDirectory(quizFolderPath);
             }
 
-            // Försök kopiera från projektmappen till AppData om det behövs
             string projectQuizPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Quizes");
             if (Directory.Exists(projectQuizPath))
             {
                 foreach (var file in Directory.GetFiles(projectQuizPath, "*.json"))
                 {
                     string destFile = Path.Combine(quizFolderPath, Path.GetFileName(file));
-                    // Kopiera bara om filen inte redan finns i AppData
                     if (!File.Exists(destFile))
                     {
                         File.Copy(file, destFile, overwrite: false);
@@ -55,14 +51,12 @@ namespace SkolQuiz
                 }
             }
 
-            // Läs alla JSON-filer från AppData asynkront
             if (Directory.Exists(quizFolderPath))
             {
                 foreach (var file in Directory.GetFiles(quizFolderPath, "*.json"))
                 {
                     try
                     {
-                        // Asynkron filläsning
                         string json = await File.ReadAllTextAsync(file);
                         var quiz = JsonSerializer.Deserialize<Quiz>(json);
                         if (quiz != null)
@@ -77,7 +71,6 @@ namespace SkolQuiz
                 }
             }
 
-            // Visa ett meddelande om inga filer hittades
             if (quizes.Count == 0)
             {
                 MessageBox.Show($"Inga JSON-filer hittades!{Environment.NewLine}{Environment.NewLine}Kontrollera att filerna finns i:{Environment.NewLine}{quizFolderPath}");
@@ -86,14 +79,12 @@ namespace SkolQuiz
 
         private void ToSeeCategory_Click(object sender, RoutedEventArgs e)
         {
-            // Kontrollera om det finns några quiz inlästa
             if (quizes.Count == 0)
             {
                 MessageBox.Show("Inga quiz hittades! Kontrollera att JSON-filerna finns i Quizes-mappen.");
                 return;
             }
 
-            // Visa kategorivyn med alla quiz
             QuizSelectionView quizSelectionView = new QuizSelectionView();
             quizSelectionView.quizes = quizes;
             MainContent.Content = quizSelectionView;
@@ -107,7 +98,6 @@ namespace SkolQuiz
 
         private async void EditQuizButton_Click(object sender, RoutedEventArgs e)
         {
-            // Ladda om quiz innan vi går till redigeringsvyn
             await LoadQuizes();
 
             if (quizes.Count == 0)

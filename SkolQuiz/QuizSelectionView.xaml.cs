@@ -57,7 +57,6 @@ namespace SkolQuiz
 
             if (selectedQuiz == null) return;
 
-            // Navigate to categories view
             if (Application.Current.MainWindow is MainWindow mainWindow)
             {
                 mainWindow.MainContent.Content = new CategoriesView { selectedQuiz = selectedQuiz };

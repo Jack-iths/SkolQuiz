@@ -51,7 +51,6 @@ namespace SkolQuiz
 
         private void AddQuestionButton_Click(object sender, RoutedEventArgs e)
         {
-            // Validera input
             if (string.IsNullOrWhiteSpace(QuestionTextBox.Text))
             {
                 MessageBox.Show("Frågan får inte vara tom!");
@@ -82,7 +81,6 @@ namespace SkolQuiz
             questions.Add(question);
             MessageBox.Show($"Fråga tillagd!{Environment.NewLine}Totalt: {questions.Count} frågor");
 
-            // Rensa fälten
             QuestionTextBox.Clear();
             Answer1TextBox.Text = "Alternativ 1";
             Answer2TextBox.Text = "Alternativ 2";

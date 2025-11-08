@@ -10,14 +10,12 @@ namespace SkolQuiz.Models
         public List<Question> Questions { get; set; }
         public string Title { get; set; }
 
-        // Parameterlös konstruktor för JSON-deserialisering
         public Quiz()
         {
             Questions = new List<Question>();
             Title = string.Empty;
         }
 
-        // Konstruktor med titel
         public Quiz(string title)
         {
             Title = title;

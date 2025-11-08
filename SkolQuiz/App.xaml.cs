@@ -8,9 +8,6 @@ using System.Windows;
 
 namespace SkolQuiz
 {
-    /// <summary>
-    /// Interaction logic for App.xaml
-    /// </summary>
     public partial class App : Application
     {
     }

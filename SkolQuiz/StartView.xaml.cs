@@ -38,7 +38,6 @@ namespace SkolQuiz
             {
                 QuizView quiz = new QuizView();
                 
-                // Blanda frågorna slumpmässigt
                 Random random = new Random();
                 List<Question> shuffledQuestions = new List<Question>();
                 
@@ -47,7 +46,6 @@ namespace SkolQuiz
                     shuffledQuestions.Add(question);
                 }
                 
-                // Sortera listan slumpmässigt
                 shuffledQuestions = shuffledQuestions.OrderBy(q => random.Next()).ToList();
                 
                 quiz.questions = shuffledQuestions;

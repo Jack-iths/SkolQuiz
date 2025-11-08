@@ -16,7 +16,6 @@ namespace SkolQuiz.Models
         public string Category { get; set; }
         public string ImagePath { get; set; }
 
-        // Paramterlös konstruktor för JSON-deserialisering
         public Question()
         {
             Statement = string.Empty;
@@ -25,7 +24,6 @@ namespace SkolQuiz.Models
             ImagePath = string.Empty;
         }
 
-        // Konstruktor med parametrar för att skapa nya frågor
         public Question(string statement, string[] answers, int correctAnswers, string category, string imagePath = "")
         {
             Statement = statement;

@@ -24,7 +24,6 @@ namespace SkolQuiz
 
         private void LoadDynamicCategories()
         {
-            // Rensa befintliga dynamiska knappar
             DynamicCategoriesPanel.Children.Clear();
 
             if (selectedQuiz == null || selectedQuiz.Questions == null || selectedQuiz.Questions.Count == 0)
@@ -33,26 +32,21 @@ namespace SkolQuiz
                 return;
             }
 
-            // Hämta alla unika kategorier från frågorna
             List<string> allCategories = new List<string>();
             foreach (Question question in selectedQuiz.Questions)
             {
                 allCategories.Add(question.Category);
             }
             
-            // Ta bort dubbletter
             List<string> uniqueCategories = allCategories.Distinct().ToList();
             
-            // Sortera kategorierna alfabetiskt
             uniqueCategories.Sort();
             
-            // Skapa en knapp för varje kategori
             var colors = new[] { "#FF3498DB", "#FF9B59B6", "#FFE74C3C", "#FF2ECC71", "#FF1ABC9C", "#FFF39C12", "#FFE67E22", "#FF34495E" };
             int colorIndex = 0;
 
             foreach (string category in uniqueCategories)
             {
-                // Räkna antalet frågor i denna kategori
                 int questionCount = 0;
                 foreach (Question question in selectedQuiz.Questions)
                 {
@@ -97,7 +91,6 @@ namespace SkolQuiz
                 return;
             }
 
-            // Filtrera frågor för vald kategori
             List<Question> categoryQuestions = new List<Question>();
             foreach (Question question in selectedQuiz.Questions)
             {
@@ -113,7 +106,6 @@ namespace SkolQuiz
                 return;
             }
 
-            // Navigera till StartView
             MainWindow mainWindow = Application.Current.MainWindow as MainWindow;
             if (mainWindow != null)
             {
@@ -125,7 +117,6 @@ namespace SkolQuiz
 
         private void AllCategoriesButton_Click(object sender, RoutedEventArgs e)
         {
-            // Hämta alla frågor från alla kategorier
             List<Question> allQuestions = new List<Question>();
             foreach (Question question in selectedQuiz.Questions)
             {
@@ -138,7 +129,6 @@ namespace SkolQuiz
                 return;
             }
 
-            // Starta quiz med alla frågor blandat
             MainWindow mainWindow = Application.Current.MainWindow as MainWindow;
             if (mainWindow != null)
             {
